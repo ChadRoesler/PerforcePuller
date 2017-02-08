@@ -34,7 +34,7 @@ namespace PerforcePuller.Helpers
 
                     if (fileList == null)
                     {
-                        throw new Exception(string.Format(ResourceStrings.UnableToLocateFile, formattedSource));
+                        throw new Exception(string.Format(ErrorStrings.UnableToLocateFile, formattedSource));
                     }
                     else
                     {

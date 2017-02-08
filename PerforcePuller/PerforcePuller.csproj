@@ -46,6 +46,7 @@
       <HintPath>lib\p4api.net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -55,8 +56,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\ErrorStrings.cs" />
     <Compile Include="Constants\HelpStrings.cs" />
+    <Compile Include="Constants\LoggingStrings.cs" />
     <Compile Include="Constants\ResourceStrings.cs" />
+    <Compile Include="Helpers\AppSettingsHelper.cs" />
     <Compile Include="Helpers\FileNameHelper.cs" />
     <Compile Include="Helpers\PerforceHelpers.cs" />
     <Compile Include="Properties\Log4NetConfigurator.cs" />

@@ -9,17 +9,19 @@ namespace PerforcePuller.Models
     public class PerforceCommand : IPerforceSettings, IPathSettings, ICommonOptions
     {
         private string LocalMasterLocation;
+        [Option ('c', "loadFromConfig",HelpText = HelpStrings.LoadFromConfigText, DefaultValue = false)]
+        public bool LoadFromConfig { get; set; }
 
-        [Option ('s',"server", HelpText = HelpStrings.ServerText, Required = true)]
+        [Option ('s',"server", HelpText = HelpStrings.ServerText)]
         public string Server { get; set; }
 
-        [Option('u', "username", HelpText = HelpStrings.UsernameText, Required = true)]
+        [Option('u', "username", HelpText = HelpStrings.UsernameText)]
         public string Username { get; set; }
 
-        [Option('p', "password", HelpText = HelpStrings.PasswordText, Required = true)]
+        [Option('p', "password", HelpText = HelpStrings.PasswordText)]
         public string Password { get; set; }
 
-        [Option('t', "timeout", HelpText = HelpStrings.TimeoutText, Required = true, DefaultValue = 15)]
+        [Option('t', "timeout", HelpText = HelpStrings.TimeoutText, DefaultValue = 15)]
         public int Timeout { get; set; }
 
         [OptionList('f',"sourceList", HelpText = HelpStrings.SourceListText)]
