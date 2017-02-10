@@ -1,6 +1,6 @@
 # PerforcePuller
 
-A Handly Little Tool for pulling files and directories from Perfroce
+A Handly Little Tool for pulling files and directories from Perforce
 
 Allows loading from the config file if desired.
 If -c is passed and values that are in the config file are passed as arguments the values passed will supersede the config file values.
