@@ -4,8 +4,11 @@ A Handly Little Tool for pulling files and directories from Perfroce
 
 Allows loading from the config file if desired.
 If -c is passed and values that are in the config file are passed as arguments the values passed will supersede the config file values.
+The following values are loadable:
+Server, Username, Password, Timeout (see the app config for more info)
 
--f is a string list that allows for multiple paths to be specified.  It will also auto append /... or ... in the case of folder paths passed.
+
+-f is a string list that allows for multiple paths to be specified, seperated by ":".  It will also auto append /... or ... in the case of folder paths passed.
 
 Below is the generated help.
 
@@ -27,3 +30,8 @@ Below is the generated help.
   -l, --location          Required. Location to place files pulled from P4.
 
   -v, --verbose           (Default: False) Print info as Tasks are run.
+
+
+
+Example Command:
+PerforcePuller -c -u "ChadRoesler" -p "PasswordHere" -f "//folder1/subFolder1/...://folder1/subfolder3/://Folder1/subfolder5://folder2/file1.ps1" -l "C:\temp" -v 
