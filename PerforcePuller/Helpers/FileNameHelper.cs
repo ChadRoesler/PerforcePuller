@@ -17,16 +17,33 @@ namespace PerforcePuller.Helpers
             {
                 if (loweredPath.Length > 3)
                 {
+                    // If the folder path does not end with /...
                     if (loweredPath.Substring(loweredPath.Length - 4, 4) != ResourceStrings.ForwardSlashEllipse)
                     {
+                        // If the folder path does not end with / append /....
                         if (loweredPath.Substring(loweredPath.Length - 1, 1) == ResourceStrings.ForwardSlash)
                         {
                             finalizedPath = string.Format(ResourceStrings.EllipseFormat, loweredPath);
                         }
+                        // If the folder path ends with / append ...
                         else
                         {
                             finalizedPath = string.Format(ResourceStrings.ForwardSlashEllipseFormat, loweredPath);
                         }
+                    }
+                }
+                //This is more so if grabbing root for everything, lets hope this never gets passed because thats a lot of files to grab
+                else
+                {
+                    // If the folder path does not end with / append /....
+                    if (loweredPath.Substring(loweredPath.Length - 1, 1) == ResourceStrings.ForwardSlash)
+                    {
+                        finalizedPath = string.Format(ResourceStrings.EllipseFormat, loweredPath);
+                    }
+                    // If the folder path ends with / append ...
+                    else
+                    {
+                        finalizedPath = string.Format(ResourceStrings.ForwardSlashEllipseFormat, loweredPath);
                     }
                 }
             }

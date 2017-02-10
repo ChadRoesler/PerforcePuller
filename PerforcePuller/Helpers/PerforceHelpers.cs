@@ -20,7 +20,6 @@ namespace PerforcePuller.Helpers
         {
             var errorList = new Dictionary<string, Exception>();
             var folderSourceDictionary = new Dictionary<string, string>();
-            var parentFolder = string.Empty;
             foreach (var sourcePath in sourcePathList)
             {
                 try
@@ -57,7 +56,7 @@ namespace PerforcePuller.Helpers
             }
             if (errorList.Count > 0)
             {
-                throw new Exception(string.Join(Environment.NewLine, errorList.Select(x => "Error with Path: " + x.Key + " : " + x.Value.Message)));
+                throw new Exception(string.Join(Environment.NewLine, errorList.Select(x => string.Format(ErrorStrings.DictionaryErrors, x.Key,  x.Value.Message))));
             }
             return folderSourceDictionary;
         }
