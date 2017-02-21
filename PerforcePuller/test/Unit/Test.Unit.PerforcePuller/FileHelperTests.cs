@@ -12,7 +12,6 @@ namespace Test.Unit.PerforcePuller
         {
             yield return new TestCaseData("//folder/subfolder", "//folder/subfolder/...");
             yield return new TestCaseData("//folder/subfolder/", "//folder/subfolder/...");
-            yield return new TestCaseData("//folder/subfolder/...", "//folder/subfolder/...");
             yield return new TestCaseData("//FOLDER/SUBFOLDER/...", "//folder/subfolder/...");
         }
 
@@ -38,16 +37,17 @@ namespace Test.Unit.PerforcePuller
 
         private static IEnumerable<TestCaseData> RootPathCases()
         {
+            yield return new TestCaseData("//folder/subfolder/...", "//folder/");
             yield return new TestCaseData("//folder/subfolder/subsubfolder/...", "//folder/subfolder/");
             yield return new TestCaseData("//folder/subfolder/file.cs", "//folder/subfolder/");
+            yield return new TestCaseData("//folder/file.cs", "//folder/");
         }
 
         [Test, TestCaseSource("RootPathCases")]
-        public void FileNameHelper_PerforceRootFolder_ReturnsParentFolder(string testPath, string expectedPath)
+        public void FileNameHelper_PerforceGetParentFolder_ReturnsParentFolder(string testPath, string expectedPath)
         {
             var results = FileNameHelper.PerforceGetParentFolder(testPath);
             Assert.That(results, Is.EqualTo(expectedPath));
         }
-
     }
 }

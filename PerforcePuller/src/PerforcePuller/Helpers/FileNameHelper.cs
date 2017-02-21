@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Linq;
 using PerforcePuller.Constants;
 
 namespace PerforcePuller.Helpers
@@ -55,13 +57,15 @@ namespace PerforcePuller.Helpers
             var childName = Path.GetFileName(originalPath);
             // Checking if its a folder
             // if it is the child name is the folder plus the /...
+            // We fake a local path for gathering direct folders under depots:  //Folder/SubFolder/...
             if (string.IsNullOrWhiteSpace(Path.GetExtension(originalPath)))
             {
-                var containingFolder = Path.GetPathRoot(originalPath).ToString().Replace(ResourceStrings.BackSlash, ResourceStrings.ForwardSlash);
-                childName = originalPath.Replace(containingFolder, string.Empty).TrimStart('/');
+                var splitPath = originalPath.Split('/');
+                var childItems = splitPath.Skip(Math.Max(0, splitPath.Count() - 2));
+                childName = string.Join("/", childItems);
             }
-            var rootFolderSource = originalPath.Replace(childName, string.Empty);
-            return rootFolderSource;
+            var folderSource = originalPath.Replace(childName, string.Empty);
+            return folderSource;
         }
     }
 }
