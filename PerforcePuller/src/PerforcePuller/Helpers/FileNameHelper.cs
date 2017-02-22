@@ -57,12 +57,11 @@ namespace PerforcePuller.Helpers
             var childName = Path.GetFileName(originalPath);
             // Checking if its a folder
             // if it is the child name is the folder plus the /...
-            // We fake a local path for gathering direct folders under depots:  //Folder/SubFolder/...
             if (string.IsNullOrWhiteSpace(Path.GetExtension(originalPath)))
             {
                 var splitPath = originalPath.Split('/');
                 var childItems = splitPath.Skip(Math.Max(0, splitPath.Count() - 2));
-                childName = string.Join("/", childItems);
+                childName = string.Join(ResourceStrings.ForwardSlash, childItems);
             }
             var folderSource = originalPath.Replace(childName, string.Empty);
             return folderSource;
